@@ -108,7 +108,7 @@ Error PackedSceneEditorTranslationParserPlugin::parse_file(const String &p_path,
 					parsed_strings.append_array(temp);
 					r_ids_ctx_plural->append_array(ids_context_plural);
 				}
-			} else if ((node_type == "MenuButton" || node_type == "OptionButton") && property_name == "items") {
+			} else if ((node_type == "MenuButton" || node_type == "OptionButton") && !property_name.match("popup/*/text")) {
 				Vector<String> str_values = property_value;
 				int incr_value = node_type == "MenuButton" ? PopupMenu::ITEM_PROPERTY_SIZE : OptionButton::ITEM_PROPERTY_SIZE;
 				for (int k = 0; k < str_values.size(); k += incr_value) {
@@ -146,7 +146,7 @@ PackedSceneEditorTranslationParserPlugin::PackedSceneEditorTranslationParserPlug
 	lookup_properties.insert("text");
 	lookup_properties.insert("tooltip_text");
 	lookup_properties.insert("placeholder_text");
-	lookup_properties.insert("items");
+	//lookup_properties.insert("items");
 	lookup_properties.insert("title");
 	lookup_properties.insert("dialog_text");
 	lookup_properties.insert("filters");
